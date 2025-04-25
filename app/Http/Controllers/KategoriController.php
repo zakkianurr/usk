@@ -11,10 +11,10 @@ class KategoriController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $data = Kategori::all();
-        return view('kategori.index', compact('data'));
-    }
+{
+    $kategoris = Kategori::all();
+    return view('kategori.index', compact('kategoris'));
+}
 
     /**
      * Show the form for creating a new resource.
