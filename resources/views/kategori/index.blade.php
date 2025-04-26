@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Daftar Kategori</h1>
+    <h1 class="underline">Daftar Kategori</h1>
     <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3">+ Tambah Kategori</a>
 
     @if (session('success'))
