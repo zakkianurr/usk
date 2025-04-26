@@ -3,32 +3,31 @@
 @section('content')
 <div class="container">
     <h1>Daftar Kategori</h1>
+    <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3">+ Tambah Kategori</a>
 
-    @if(session('success'))
-        <div style="color: green;">{{ session('success') }}</div>
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('kategori.create') }}">+ Tambah Kategori</a>
-
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
+                <th>Nama Kategori</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($kategoris as $index => $kategori)
+            @foreach($kategoris as $index => $item)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $kategori->nama }}</td>
+                <td>{{ $item->nama }}</td>
                 <td>
-                    <a href="{{ route('kategori.edit', $kategori->id) }}">Edit</a> |
-                    <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('kategori.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('kategori.destroy', $item->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('Yakin?')">Hapus</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus?')">Hapus</button>
                     </form>
                 </td>
             </tr>
