@@ -29,7 +29,7 @@ class KategoriController extends Controller
 
         Kategori::create($request->all());
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan');
+        return redirect()->route('kategori.index')->with('Sukses', 'Kategori berhasil ditambahkan');
     }
 
     // Display the specified resource.
@@ -55,9 +55,10 @@ class KategoriController extends Controller
     $kategori = Kategori::findOrFail($id); // Ambil data berdasarkan ID
     $kategori->update($request->all());
 
-    return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diupdate');
+    return redirect()->route('kategori.index')->with('Sukses', 'Kategori berhasil diupdate');
 }
 
+// Remove the specified resource from storage
 public function destroy(string $id)
 {
     $kategori = Kategori::findOrFail($id); // Ambil data berdasarkan ID

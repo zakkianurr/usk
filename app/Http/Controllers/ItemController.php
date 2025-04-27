@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -11,7 +12,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return view('item.index', compact('items'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('kaegori.create');
     }
 
     /**
@@ -27,7 +29,15 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_item' => 'required',
+            'jumlah' => 'required|integer',
+            'harga' => 'required|integer'
+        ]);
+
+        Item::create($request->all());
+
+        return redirect()->route('item.index')->with('Sukses', 'Item berhasil ditambahkan');
     }
 
     /**
@@ -43,7 +53,8 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Item::findOrFail($id);
+        return view('item.edit', compact('item'));
     }
 
     /**
@@ -51,7 +62,16 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_item' => 'required',
+            'jumlah' => 'required|integer',
+            'harga' => 'required|integer'
+        ]);
+
+        $item = Item::findOrFail($id);
+        $item->update($request->all());
+
+        return redirect()->route('item.index')->with('Sukses', 'Item berhasil di update');
     }
 
     /**
@@ -59,6 +79,9 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = Item::findOrFail($id); // Ambil data berdasarkan ID
+        $item->delete();
+
+        return redirect()->route('item.index')->with('Sukses', 'Item berhasil dihapus');
     }
 }
