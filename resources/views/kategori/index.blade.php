@@ -3,7 +3,7 @@
 @section('content')
 <div class="mx-auto mt-10 container">
     <h1 class="text-3xl font-bold text-center text-white">Daftar Kategori</h1>
-    <a href="{{ route('kategori.create') }}" class="bg-sky btn btn-primary mb-3">+ Tambah Kategori</a>
+    <a href="{{ route('kategori.create') }}" class="bg-sky-500 btn btn-primary mb-3">+ Tambah Kategori</a>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
